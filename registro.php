@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/png.png" rel="icon">
     <title>Document</title>
 </head>
 <body>
 <div class="registro-form">
   <h2>Registro</h2>
+  <button type="submit"><a href="index.html">ATRAS</a></button><br><br>
   <form action="procesar-registro.php" method="post">
     <label for="nombre" class="registro-label">Nombre:</label>
     <input type="text" id="nombre" name="nombre" class="registro-input" required>
