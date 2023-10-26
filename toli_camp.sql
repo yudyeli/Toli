@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2023 a las 16:30:04
+-- Tiempo de generación: 26-10-2023 a las 08:32:18
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -58,7 +58,7 @@ CREATE TABLE `det_producto` (
 --
 
 INSERT INTO `det_producto` (`id_det_producto`, `id_producto`, `docu_ven`) VALUES
-(1, 1, 1538902353);
+(1, 1, 1106632513);
 
 -- --------------------------------------------------------
 
@@ -136,6 +136,15 @@ CREATE TABLE `ingreso` (
   `durac` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Volcado de datos para la tabla `ingreso`
+--
+
+INSERT INTO `ingreso` (`id_ingreso`, `documento`, `fecha_ingre`, `hora_ingre`, `fecha_sali`, `hora_sali`, `durac`) VALUES
+(1, 1106632525, '2023-10-26', '01:26:22', '0000-00-00', '00:00:00', 0),
+(2, 1106632525, '2023-10-26', '01:30:47', '0000-00-00', '00:00:00', 0),
+(3, 1106632525, '2023-10-26', '01:31:07', '0000-00-00', '00:00:00', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -157,7 +166,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id_producto`, `nombre_producto`, `descripcion`, `precio`, `disponibles`, `id_categoria`, `cantidad`) VALUES
-(1, 'tomate', 'Se encuentra variedad de tomates grandes y pequeños', 5000, 50, 1, 0);
+(1, 'tomate', 'Se encuentra variedad de tomates grandes y pequeños', 5000, 50, 1, 60);
 
 -- --------------------------------------------------------
 
@@ -176,7 +185,7 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id_rol`, `tipo_rol`) VALUES
 (1, 'administrador'),
-(2, 'usuarios'),
+(2, 'usuario'),
 (3, 'vendedor');
 
 -- --------------------------------------------------------
@@ -203,31 +212,23 @@ CREATE TABLE `usuarios` (
   `documento` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
-  `contraseña` varchar(500) NOT NULL,
+  `password` varchar(500) NOT NULL,
   `correo_electronico` varchar(50) NOT NULL,
-  `celular` smallint(10) NOT NULL,
+  `celular` varchar(10) NOT NULL,
   `direccion` varchar(50) NOT NULL,
   `id_genero` int(11) NOT NULL,
   `id_rol` int(11) NOT NULL,
-  `id_estado` int(11) NOT NULL
+  `id_estado` int(11) NOT NULL,
+  `fallos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`documento`, `nombre`, `apellido`, `contraseña`, `correo_electronico`, `celular`, `direccion`, `id_genero`, `id_rol`, `id_estado`) VALUES
-(1106632118, 'yudy', 'rico', 'yudy08', 'yerico8@misena.edu.co', 32767, 'el salado', 2, 1, 1),
-(1106632525, 'jhoen', 'ramos', 'jhoen13', 'sahileth96@gmail.com', 32767, 'Manzana Q casa 5 Bosque parte baja', 2, 1, 1),
-(1538902353, 'kevin', 'jaimes', 'kevin10', 'kevin@gmail.com', 32767, 'el salado', 1, 1, 1);
-
---
--- Disparadores `usuarios`
---
-DELIMITER $$
-CREATE TRIGGER `pass_trigger` BEFORE UPDATE ON `usuarios` FOR EACH ROW INSERT INTO trig_pass (documento,usuario,contraseña,date) VALUES (OLD.documento,OLD.usuario,OLD.contraseña,NOW())
-$$
-DELIMITER ;
+INSERT INTO `usuarios` (`documento`, `nombre`, `apellido`, `password`, `correo_electronico`, `celular`, `direccion`, `id_genero`, `id_rol`, `id_estado`, `fallos`) VALUES
+(1106632513, 'jeidy', 'joven', '$2y$10$IEDL6mttPjmWIKF/J5om8.LFc03S6XF7oAhTXTWIhQVigFyW9JrAa', 'Jeidy13@gmail.com', '3133130948', 'Manzana Q casa 5 barrio: bosque baja', 2, 3, 1, 0),
+(1106632525, 'jhoen', 'ramos', '$2y$12$GprzLgvGSFU.O.rP4ra.v.9FalCCzrBrv.cKtza8jzYAHpde.nnoq', 'sahileth96@gmail.com', '3227825320', 'Manzana Q casa 5 barrio: bosque baja', 2, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -369,6 +370,12 @@ ALTER TABLE `genero`
   MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `ingreso`
+--
+ALTER TABLE `ingreso`
+  MODIFY `id_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
@@ -416,27 +423,6 @@ ALTER TABLE `det_venta`
 --
 ALTER TABLE `ingreso`
   ADD CONSTRAINT `ingreso_ibfk_1` FOREIGN KEY (`documento`) REFERENCES `usuarios` (`documento`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `productos`
---
-ALTER TABLE `productos`
-  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`id_genero`) REFERENCES `genero` (`id_genero`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuarios_ibfk_3` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `ventas`
---
-ALTER TABLE `ventas`
-  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`id_det_producto`) REFERENCES `det_producto` (`id_det_producto`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`docu_clien`) REFERENCES `usuarios` (`documento`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
