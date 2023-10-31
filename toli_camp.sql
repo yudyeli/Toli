@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2023 a las 08:32:18
+-- Tiempo de generación: 31-10-2023 a las 12:15:21
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -143,7 +143,10 @@ CREATE TABLE `ingreso` (
 INSERT INTO `ingreso` (`id_ingreso`, `documento`, `fecha_ingre`, `hora_ingre`, `fecha_sali`, `hora_sali`, `durac`) VALUES
 (1, 1106632525, '2023-10-26', '01:26:22', '0000-00-00', '00:00:00', 0),
 (2, 1106632525, '2023-10-26', '01:30:47', '0000-00-00', '00:00:00', 0),
-(3, 1106632525, '2023-10-26', '01:31:07', '0000-00-00', '00:00:00', 0);
+(3, 1106632525, '2023-10-26', '01:31:07', '0000-00-00', '00:00:00', 0),
+(4, 1106632118, '2023-10-26', '10:41:05', '0000-00-00', '00:00:00', 0),
+(5, 1106632118, '2023-10-26', '10:44:24', '0000-00-00', '00:00:00', 0),
+(6, 1106632513, '2023-10-26', '10:47:24', '0000-00-00', '00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -227,7 +230,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`documento`, `nombre`, `apellido`, `password`, `correo_electronico`, `celular`, `direccion`, `id_genero`, `id_rol`, `id_estado`, `fallos`) VALUES
-(1106632513, 'jeidy', 'joven', '$2y$10$IEDL6mttPjmWIKF/J5om8.LFc03S6XF7oAhTXTWIhQVigFyW9JrAa', 'Jeidy13@gmail.com', '3133130948', 'Manzana Q casa 5 barrio: bosque baja', 2, 3, 1, 0),
+(1106632118, 'yudy', 'rico', '$2y$12$f2gTqfFDE5duw6dtfAuLMeU/5ibEtCqm/FuMz5OQbOiqmwwZE26Tu', 'yerico8@misena.edu.co', '3203020256', 'Carrera 8d #131-25 barrio montecarlo', 2, 2, 1, 0),
+(1106632513, 'jeidy', 'joven', '$2y$12$aQ7vTJirCTJHQyN3wKz4uu3zJmNBrr.FKJX6PRj1CBgDs9607bhmm', 'Jeidy13@gmail.com', '3133130948', 'Manzana Q casa 5 barrio: bosque baja', 2, 3, 1, 0),
 (1106632525, 'jhoen', 'ramos', '$2y$12$GprzLgvGSFU.O.rP4ra.v.9FalCCzrBrv.cKtza8jzYAHpde.nnoq', 'sahileth96@gmail.com', '3227825320', 'Manzana Q casa 5 barrio: bosque baja', 2, 1, 1, 0);
 
 -- --------------------------------------------------------
@@ -373,7 +377,7 @@ ALTER TABLE `genero`
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `id_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
