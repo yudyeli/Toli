@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2023 a las 12:15:21
+-- Tiempo de generación: 07-11-2023 a las 13:22:29
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -44,21 +44,30 @@ INSERT INTO `categoria` (`id_categoria`, `categoria`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `det_producto`
+-- Estructura de tabla para la tabla `compras`
 --
 
-CREATE TABLE `det_producto` (
-  `id_det_producto` int(11) NOT NULL,
+CREATE TABLE `compras` (
+  `id_compra` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `docu_ven` int(11) NOT NULL,
+  `docu_clien` int(11) NOT NULL,
+  `total` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `det_compra`
+--
+
+CREATE TABLE `det_compra` (
+  `id_detcompra` int(11) NOT NULL,
+  `id_compra` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
-  `docu_ven` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `det_producto`
---
-
-INSERT INTO `det_producto` (`id_det_producto`, `id_producto`, `docu_ven`) VALUES
-(1, 1, 1106632513);
+  `cantidad` int(5) NOT NULL,
+  `sub_tot` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -69,17 +78,41 @@ INSERT INTO `det_producto` (`id_det_producto`, `id_producto`, `docu_ven`) VALUES
 CREATE TABLE `det_venta` (
   `id_det_venta` int(11) NOT NULL,
   `id_venta` int(11) NOT NULL,
-  `id_det_producto` int(11) NOT NULL,
-  `docu_clien` int(11) NOT NULL,
-  `total_v` decimal(10,2) NOT NULL
+  `id_producto` int(11) NOT NULL,
+  `cantidad` int(5) NOT NULL,
+  `sub_tot` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `det_venta`
 --
 
-INSERT INTO `det_venta` (`id_det_venta`, `id_venta`, `id_det_producto`, `docu_clien`, `total_v`) VALUES
+INSERT INTO `det_venta` (`id_det_venta`, `id_venta`, `id_producto`, `cantidad`, `sub_tot`) VALUES
 (1, 1, 1, 1106632525, 10000.00);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `embalaje`
+--
+
+CREATE TABLE `embalaje` (
+  `id_embala` int(11) NOT NULL,
+  `embalaje` char(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `entrada`
+--
+
+CREATE TABLE `entrada` (
+  `id_entrada` int(11) NOT NULL,
+  `docu_mayo` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `cantidad` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -108,7 +141,7 @@ INSERT INTO `estado` (`id_estado`, `estado`) VALUES
 
 CREATE TABLE `genero` (
   `id_genero` int(11) NOT NULL,
-  `genero` varchar(50) NOT NULL
+  `genero` char(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -146,7 +179,14 @@ INSERT INTO `ingreso` (`id_ingreso`, `documento`, `fecha_ingre`, `hora_ingre`, `
 (3, 1106632525, '2023-10-26', '01:31:07', '0000-00-00', '00:00:00', 0),
 (4, 1106632118, '2023-10-26', '10:41:05', '0000-00-00', '00:00:00', 0),
 (5, 1106632118, '2023-10-26', '10:44:24', '0000-00-00', '00:00:00', 0),
-(6, 1106632513, '2023-10-26', '10:47:24', '0000-00-00', '00:00:00', 0);
+(6, 1106632513, '2023-10-26', '10:47:24', '0000-00-00', '00:00:00', 0),
+(7, 1106632525, '2023-10-31', '06:21:58', '0000-00-00', '00:00:00', 0),
+(8, 1106632525, '2023-10-31', '06:22:08', '0000-00-00', '00:00:00', 0),
+(9, 1106632525, '2023-10-31', '06:23:04', '0000-00-00', '00:00:00', 0),
+(10, 1106632525, '2023-10-31', '06:23:31', '0000-00-00', '00:00:00', 0),
+(11, 1106632525, '2023-11-03', '06:30:39', '0000-00-00', '00:00:00', 0),
+(12, 1106632525, '2023-11-07', '06:20:42', '0000-00-00', '00:00:00', 0),
+(13, 1106632517, '2023-11-07', '06:58:12', '0000-00-00', '00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -156,20 +196,24 @@ INSERT INTO `ingreso` (`id_ingreso`, `documento`, `fecha_ingre`, `hora_ingre`, `
 
 CREATE TABLE `productos` (
   `id_producto` int(11) NOT NULL,
-  `nombre_producto` varchar(500) NOT NULL,
-  `descripcion` varchar(500) NOT NULL,
-  `precio` decimal(10,0) NOT NULL,
+  `nom_produc` varchar(50) NOT NULL,
+  `descrip` varchar(150) NOT NULL,
+  `precio_compra` decimal(10,2) NOT NULL,
   `disponibles` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
-  `cantidad` smallint(5) NOT NULL
+  `cantidad` smallint(5) NOT NULL,
+  `id_embala` int(11) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `precio_ven` decimal(10,2) NOT NULL,
+  `documento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `nombre_producto`, `descripcion`, `precio`, `disponibles`, `id_categoria`, `cantidad`) VALUES
-(1, 'tomate', 'Se encuentra variedad de tomates grandes y pequeños', 5000, 50, 1, 60);
+INSERT INTO `productos` (`id_producto`, `nom_produc`, `descrip`, `precio_compra`, `disponibles`, `id_categoria`, `cantidad`, `id_embala`, `foto`, `precio_ven`, `documento`) VALUES
+(1, 'tomate', 'Se encuentra variedad de tomates grandes y pequeños', 5000.00, 50, 1, 60, 0, '', 0.00, 0);
 
 -- --------------------------------------------------------
 
@@ -189,7 +233,19 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id_rol`, `tipo_rol`) VALUES
 (1, 'administrador'),
 (2, 'usuario'),
-(3, 'vendedor');
+(3, 'vendedor'),
+(4, 'campesino');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipdocu`
+--
+
+CREATE TABLE `tipdocu` (
+  `id_tipdocu` int(11) NOT NULL,
+  `tipoocu` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -200,8 +256,8 @@ INSERT INTO `roles` (`id_rol`, `tipo_rol`) VALUES
 CREATE TABLE `trig_pass` (
   `id_trigpass` int(11) NOT NULL,
   `documento` int(10) NOT NULL,
-  `correo_electronico` text NOT NULL,
-  `contraseña` text NOT NULL,
+  `correo_electronico` varchar(50) NOT NULL,
+  `contraseña` varchar(500) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -222,17 +278,20 @@ CREATE TABLE `usuarios` (
   `id_genero` int(11) NOT NULL,
   `id_rol` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
-  `fallos` int(11) NOT NULL
+  `fallos` int(11) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `id_tipdocu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`documento`, `nombre`, `apellido`, `password`, `correo_electronico`, `celular`, `direccion`, `id_genero`, `id_rol`, `id_estado`, `fallos`) VALUES
-(1106632118, 'yudy', 'rico', '$2y$12$f2gTqfFDE5duw6dtfAuLMeU/5ibEtCqm/FuMz5OQbOiqmwwZE26Tu', 'yerico8@misena.edu.co', '3203020256', 'Carrera 8d #131-25 barrio montecarlo', 2, 2, 1, 0),
-(1106632513, 'jeidy', 'joven', '$2y$12$aQ7vTJirCTJHQyN3wKz4uu3zJmNBrr.FKJX6PRj1CBgDs9607bhmm', 'Jeidy13@gmail.com', '3133130948', 'Manzana Q casa 5 barrio: bosque baja', 2, 3, 1, 0),
-(1106632525, 'jhoen', 'ramos', '$2y$12$GprzLgvGSFU.O.rP4ra.v.9FalCCzrBrv.cKtza8jzYAHpde.nnoq', 'sahileth96@gmail.com', '3227825320', 'Manzana Q casa 5 barrio: bosque baja', 2, 1, 1, 0);
+INSERT INTO `usuarios` (`documento`, `nombre`, `apellido`, `password`, `correo_electronico`, `celular`, `direccion`, `id_genero`, `id_rol`, `id_estado`, `fallos`, `foto`, `id_tipdocu`) VALUES
+(28544314, 'jeidy', 'joven', '$2y$12$aQ7vTJirCTJHQyN3wKz4uu3zJmNBrr.FKJX6PRj1CBgDs9607bhmm', 'Jeidy13@gmail.com', '3133130948', 'Manzana Q casa 5 barrio: bosque baja', 2, 3, 1, 0, '', 0),
+(1106632118, 'yudy', 'rico', '$2y$12$f2gTqfFDE5duw6dtfAuLMeU/5ibEtCqm/FuMz5OQbOiqmwwZE26Tu', 'yerico8@misena.edu.co', '3203020256', 'Carrera 8d #131-25 barrio montecarlo', 2, 2, 1, 0, '', 0),
+(1106632517, 'kevin', 'jaimes', '$2y$12$5rN8m2svxD9ueNZFOqFJkulXC24LC5Y7PDr4NAJfA0px86IaZv11O', 'kajaimes51@misena.edu.co', '3245245253', 'el salado', 1, 4, 1, 0, '', 0),
+(1106632525, 'jhoen', 'ramos', '$2y$12$GprzLgvGSFU.O.rP4ra.v.9FalCCzrBrv.cKtza8jzYAHpde.nnoq', 'sahileth96@gmail.com', '3227825320', 'Manzana Q casa 5 barrio: bosque baja', 2, 1, 1, 2, '', 0);
 
 -- --------------------------------------------------------
 
@@ -242,20 +301,11 @@ INSERT INTO `usuarios` (`documento`, `nombre`, `apellido`, `password`, `correo_e
 
 CREATE TABLE `ventas` (
   `id_venta` int(11) NOT NULL,
-  `fecha` date NOT NULL,
-  `hora` time NOT NULL,
-  `id_det_producto` int(11) NOT NULL,
-  `cantidad` smallint(5) NOT NULL,
-  `docu_clien` int(11) NOT NULL,
-  `total_v` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `ventas`
---
-
-INSERT INTO `ventas` (`id_venta`, `fecha`, `hora`, `id_det_producto`, `cantidad`, `docu_clien`, `total_v`) VALUES
-(1, '2023-10-17', '11:26:59', 1, 5, 1106632525, 10000.00);
+  `fecha` datetime NOT NULL,
+  `tot_ven` decimal(10,2) NOT NULL,
+  `docu_ven` int(11) NOT NULL,
+  `docu_clien` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Índices para tablas volcadas
@@ -268,21 +318,37 @@ ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indices de la tabla `det_producto`
+-- Indices de la tabla `compras`
 --
-ALTER TABLE `det_producto`
-  ADD PRIMARY KEY (`id_det_producto`),
-  ADD KEY `id_producto` (`id_producto`),
-  ADD KEY `documento` (`docu_ven`);
+ALTER TABLE `compras`
+  ADD PRIMARY KEY (`id_compra`);
+
+--
+-- Indices de la tabla `det_compra`
+--
+ALTER TABLE `det_compra`
+  ADD PRIMARY KEY (`id_detcompra`);
 
 --
 -- Indices de la tabla `det_venta`
 --
 ALTER TABLE `det_venta`
   ADD PRIMARY KEY (`id_det_venta`),
-  ADD KEY `id_producto` (`id_det_producto`),
+  ADD KEY `id_producto` (`id_producto`),
   ADD KEY `id_venta` (`id_venta`),
-  ADD KEY `documento` (`docu_clien`);
+  ADD KEY `documento` (`cantidad`);
+
+--
+-- Indices de la tabla `embalaje`
+--
+ALTER TABLE `embalaje`
+  ADD PRIMARY KEY (`id_embala`);
+
+--
+-- Indices de la tabla `entrada`
+--
+ALTER TABLE `entrada`
+  ADD PRIMARY KEY (`id_entrada`);
 
 --
 -- Indices de la tabla `estado`
@@ -317,6 +383,12 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_rol`);
 
 --
+-- Indices de la tabla `tipdocu`
+--
+ALTER TABLE `tipdocu`
+  ADD PRIMARY KEY (`id_tipdocu`);
+
+--
 -- Indices de la tabla `trig_pass`
 --
 ALTER TABLE `trig_pass`
@@ -335,9 +407,7 @@ ALTER TABLE `usuarios`
 -- Indices de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  ADD PRIMARY KEY (`id_venta`),
-  ADD KEY `id_det_producto` (`id_det_producto`),
-  ADD KEY `ventas_ibfk_2` (`docu_clien`);
+  ADD PRIMARY KEY (`id_venta`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -350,16 +420,34 @@ ALTER TABLE `categoria`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `det_producto`
+-- AUTO_INCREMENT de la tabla `compras`
 --
-ALTER TABLE `det_producto`
-  MODIFY `id_det_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `compras`
+  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `det_compra`
+--
+ALTER TABLE `det_compra`
+  MODIFY `id_detcompra` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `det_venta`
 --
 ALTER TABLE `det_venta`
   MODIFY `id_det_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `embalaje`
+--
+ALTER TABLE `embalaje`
+  MODIFY `id_embala` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `entrada`
+--
+ALTER TABLE `entrada`
+  MODIFY `id_entrada` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `estado`
@@ -377,7 +465,7 @@ ALTER TABLE `genero`
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `id_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -389,7 +477,13 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `tipdocu`
+--
+ALTER TABLE `tipdocu`
+  MODIFY `id_tipdocu` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `trig_pass`
@@ -401,32 +495,7 @@ ALTER TABLE `trig_pass`
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `det_producto`
---
-ALTER TABLE `det_producto`
-  ADD CONSTRAINT `det_producto_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id_producto`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `det_producto_ibfk_2` FOREIGN KEY (`docu_ven`) REFERENCES `usuarios` (`documento`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `det_venta`
---
-ALTER TABLE `det_venta`
-  ADD CONSTRAINT `det_venta_ibfk_2` FOREIGN KEY (`id_venta`) REFERENCES `ventas` (`id_venta`) ON DELETE CASCADE,
-  ADD CONSTRAINT `det_venta_ibfk_3` FOREIGN KEY (`docu_clien`) REFERENCES `usuarios` (`documento`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `det_venta_ibfk_4` FOREIGN KEY (`id_det_producto`) REFERENCES `det_producto` (`id_det_producto`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `ingreso`
---
-ALTER TABLE `ingreso`
-  ADD CONSTRAINT `ingreso_ibfk_1` FOREIGN KEY (`documento`) REFERENCES `usuarios` (`documento`) ON UPDATE CASCADE;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
