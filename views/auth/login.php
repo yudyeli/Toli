@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="css/style1.css"> -->
+    <link rel="stylesheet" href="../../assets/css/stylelo.css"> 
 
     <!-- Favicon -->
     <link href="../../assets/img/logo.png" rel="icon">
@@ -17,13 +17,15 @@
 <body>
     <!-- mt es margin top; l left; b buttom y asi con todas las partes del margin -->
     <div class="container mt-5">
-        <h2>Login</h2>
+        <h2>Inicio de Sesion</h2>
         <button type="submit" class="btn btn-danger btn-re"><a href="../../index.html">ATRAS</a></button>
         <br><br>
 
         <form method="POST" enctype="multipart/form-data" autocomplete="off" action="../../controller/inicio.php">
             <div class="row">
+
                 <div class="form-group col">
+                <label for="correo_electronico">Correo Electrónico:</label>
                     <input type="email" placeholder="Correo Electronico" class="form-control" name="correo_electronico" required onkeyup="espacios(this)" maxlength="40">
                 </div>
 
@@ -38,7 +40,7 @@
 
             </div>
 
-            <button type="submit" value="registrar" name="btn-ingresar" class="btn btn-warning btn-re">INGRESAR</button>
+            <button type="submit" value="registrar" name="btn-ingresar" class="btn_ing">INGRESAR</button>
             <a class="ingresar" href="registro.php">Registrar</a><br>
         </form>
     </div>
