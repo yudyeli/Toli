@@ -68,7 +68,7 @@ if ((isset($_POST["btn-registrar"]))) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="css/style1.css"> -->
+  <link rel="stylesheet" href="../../assets/css/stylelo.css"> 
 
   <!-- Favicon -->
   <link href="../../assets/img/logo.png" rel="icon">
@@ -153,7 +153,7 @@ if ((isset($_POST["btn-registrar"]))) {
         <br>
       </div>
 
-      <button type="submit" value="registrar" name="btn-registrar" class="btn btn-warning btn-re">REGISTRAR</button>
+      <button type="submit" value="registrar" name="btn-registrar" class="btn_ing">REGISTRAR</button>
       <a class="ingresar" href="login.php">Ingresar</a><br>
     </form>
   </div>
