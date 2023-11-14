@@ -1,6 +1,20 @@
+<?php
+require_once("../../../db/conexion.php");
+// require_once ("../../../controller/validarsesion.php");
+$db = new Database();
+$con = $db->conectar();
+session_start();
 
-
-
+// // Verificar si el nombre de usuario está definido en la sesión
+// if (isset($_SESSION['name'])) {
+//     // Mostrar el nombre del usuario
+//     echo 'Bienvenido, ' . $_SESSION['name'] . '!';
+// } else {
+//     // Si el nombre de usuario no está definido, mostrar un mensaje de error o redirigir a la página de inicio de sesión
+//     echo 'Inicia sesión para ver esta página';
+//     // o puedes redirigir a la página de inicio de sesión con header('Location: pagina_de_inicio.php');
+// }
+?>
 
 
 <!DOCTYPE html>
@@ -20,7 +34,7 @@
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title>Admin Dashboard</title>
+    <title>Admin <?php $_SESSION['name']; ?></title>
 
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="../../../assets/img/logo.png">

@@ -78,7 +78,7 @@ if ((isset($_POST["btn-registrar"]))) {
   <!-- mt es margin top; l left; b buttom y asi con todas las partes del margin -->
   <div class="container mt-5">
     <h2>REGISTRO</h2>
-    <button type="submit" class="btn btn-danger btn-re"><a href="../../index.html">ATRAS</a></button>
+    <button type="submit" class="btn btn-danger btn-re"><a href="../../../index.html">ATRAS</a></button>
     <br><br>
 
     <form method="POST" enctype="multipart/form-data" autocomplete="off">

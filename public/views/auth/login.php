@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +8,7 @@
     <title>Inicio Sesion</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="../../assets/css/stylelo.css"> 
+    <link rel="stylesheet" href="../../assets/css/stylelo.css">
 
     <!-- Favicon -->
     <link href="../../assets/img/logo.png" rel="icon">
@@ -19,15 +18,11 @@
     <!-- mt es margin top; l left; b buttom y asi con todas las partes del margin -->
     <div class="container mt-5">
         <h2>Inicio de Sesion</h2>
-
-    <button type="submit" class="btn btn-success btn-re" style="background-color: #00B894;">
-        <a href="../../index.html" style="color: #000000;" class="d-flex align-items-center">
-        <i class="fas fa-arrow-left mr-2"></i>
-        </a>
-    </button>
-
-
-
+        <button type="submit" class="btn btn-success btn-re" style="background-color: #00B894;">
+            <a href="../../../index.html" style="color: #000000;" class="d-flex align-items-center">
+                <i class="fas fa-arrow-left mr-2"></i>
+            </a>
+        </button>
         <br><br>
 
         <form method="POST" enctype="multipart/form-data" autocomplete="off" action="../../controller/inicio.php">

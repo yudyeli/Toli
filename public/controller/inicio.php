@@ -61,6 +61,8 @@ if (isset($_POST["btn-ingresar"])) {
             $_SESSION['name'] = $consul['nombre'];
             $_SESSION['email'] = $consul['correo_electronico'];
             $_SESSION['roles'] = $consul['id_rol'];
+            $_SESSION['pass'] = $consul['password'];
+
 
             $redirectLocation = '';
 

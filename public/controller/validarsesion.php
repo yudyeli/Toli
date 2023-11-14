@@ -1,9 +1,10 @@
 <?php
 //Archivo que permite validar la sesion
 
-if(!isset($_SESSION['documento']) || !isset($_SESSION['contraseña']))
+session_start();
+if(!isset($_SESSION['email']) || !isset($_SESSION['pass']))
 {
-    header("location:../../index.php");
+    header("location:../views/auth/login.php");
     exit;
 }
 ?>
