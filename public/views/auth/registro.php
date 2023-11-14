@@ -68,6 +68,7 @@ if ((isset($_POST["btn-registrar"]))) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
   <link rel="stylesheet" href="../../assets/css/stylelo.css"> 
 
   <!-- Favicon -->
@@ -76,10 +77,15 @@ if ((isset($_POST["btn-registrar"]))) {
 
 <body>
   <!-- mt es margin top; l left; b buttom y asi con todas las partes del margin -->
-  <div class="container mt-5">
+  <div class="containerr mt-5">
+    <button type="submit" class="btn btn-re btn-xl sharp" style="padding: 5px 10px; font-size: 12px;"> 
+        <a href="../../../index.html" style="color: #000000;" class="d-flex align-items-center">
+          <i class="fas fa-arrow-left mr-2 fa-2x"></i> 
+        </a>
+        </button>
+        <br>
     <h2>REGISTRO</h2>
-    <button type="submit" class="btn btn-danger btn-re"><a href="../../../index.html">ATRAS</a></button>
-    <br><br>
+    
 
     <form method="POST" enctype="multipart/form-data" autocomplete="off">
       <div class="row">
