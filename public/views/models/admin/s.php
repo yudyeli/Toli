@@ -5,15 +5,6 @@ $db = new Database();
 $con = $db->conectar();
 session_start();
 
-// // Verificar si el nombre de usuario está definido en la sesión
-// if (isset($_SESSION['name'])) {
-//     // Mostrar el nombre del usuario
-//     echo 'Bienvenido, ' . $_SESSION['name'] . '!';
-// } else {
-//     // Si el nombre de usuario no está definido, mostrar un mensaje de error o redirigir a la página de inicio de sesión
-//     echo 'Inicia sesión para ver esta página';
-//     // o puedes redirigir a la página de inicio de sesión con header('Location: pagina_de_inicio.php');
-// }
 ?>
 
 
@@ -34,11 +25,10 @@ session_start();
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title>Admin <?php $_SESSION['name']; ?></title>
+    <title>ADMIN <?php echo $_SESSION['name']; ?></title>
 
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="../../../assets/img/logo.png">
-    <!-- <link href="./public/assets/img/logo.png" rel="icon"> -->
 
     <link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
@@ -831,7 +821,7 @@ session_start();
 
                             <li class="nav-item dropdown  header-profile">
                                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                                    <img src="images/user.jpg" width="56" alt="">
+                                    <img src="../../../../images/user.jpg" width="56" alt="">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a href="app-profile.html" class="dropdown-item ai-icon">
