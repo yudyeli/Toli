@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2023 a las 13:22:29
+-- Tiempo de generación: 16-11-2023 a las 12:51:18
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -101,6 +101,13 @@ CREATE TABLE `embalaje` (
   `embalaje` char(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Volcado de datos para la tabla `embalaje`
+--
+
+INSERT INTO `embalaje` (`id_embala`, `embalaje`) VALUES
+(1, 'dsdacc');
+
 -- --------------------------------------------------------
 
 --
@@ -186,7 +193,8 @@ INSERT INTO `ingreso` (`id_ingreso`, `documento`, `fecha_ingre`, `hora_ingre`, `
 (10, 1106632525, '2023-10-31', '06:23:31', '0000-00-00', '00:00:00', 0),
 (11, 1106632525, '2023-11-03', '06:30:39', '0000-00-00', '00:00:00', 0),
 (12, 1106632525, '2023-11-07', '06:20:42', '0000-00-00', '00:00:00', 0),
-(13, 1106632517, '2023-11-07', '06:58:12', '0000-00-00', '00:00:00', 0);
+(13, 1106632517, '2023-11-07', '06:58:12', '0000-00-00', '00:00:00', 0),
+(14, 1106632525, '2023-11-14', '10:04:50', '0000-00-00', '00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -203,7 +211,7 @@ CREATE TABLE `productos` (
   `id_categoria` int(11) NOT NULL,
   `cantidad` smallint(5) NOT NULL,
   `id_embala` int(11) NOT NULL,
-  `foto` varchar(255) NOT NULL,
+  `foto` longblob NOT NULL,
   `precio_ven` decimal(10,2) NOT NULL,
   `documento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -213,7 +221,10 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id_producto`, `nom_produc`, `descrip`, `precio_compra`, `disponibles`, `id_categoria`, `cantidad`, `id_embala`, `foto`, `precio_ven`, `documento`) VALUES
-(1, 'tomate', 'Se encuentra variedad de tomates grandes y pequeños', 5000.00, 50, 1, 60, 0, '', 0.00, 0);
+(1, 'tomateeee', 'Se encuentra variedad de tomates grandes y pequeños', 5000.00, 50, 1, 60, 1, 0x70726f647563746f5f313639393937363836392e77656270, 0.00, 1106632525),
+(2, 'asdasd', 'sadas', 99999999.99, 12312, 1, 2132, 1, 0x4172726179, 66666.00, 1106632525),
+(3, 'uhuhuh', 'uhuhuh', 6666.00, 777, 1, 6666, 1, 0x4172726179, 67766.00, 1106632525),
+(4, 'sadasasdas', 'sadasd', 1212.00, 1212, 1, 32767, 1, 0x70726f647563746f5f313639393937363931372e6a7067, 1212.00, 1106632525);
 
 -- --------------------------------------------------------
 
@@ -278,7 +289,6 @@ CREATE TABLE `usuarios` (
   `id_genero` int(11) NOT NULL,
   `id_rol` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
-  `fallos` int(11) NOT NULL,
   `foto` varchar(255) NOT NULL,
   `id_tipdocu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -287,11 +297,11 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`documento`, `nombre`, `apellido`, `password`, `correo_electronico`, `celular`, `direccion`, `id_genero`, `id_rol`, `id_estado`, `fallos`, `foto`, `id_tipdocu`) VALUES
-(28544314, 'jeidy', 'joven', '$2y$12$aQ7vTJirCTJHQyN3wKz4uu3zJmNBrr.FKJX6PRj1CBgDs9607bhmm', 'Jeidy13@gmail.com', '3133130948', 'Manzana Q casa 5 barrio: bosque baja', 2, 3, 1, 0, '', 0),
-(1106632118, 'yudy', 'rico', '$2y$12$f2gTqfFDE5duw6dtfAuLMeU/5ibEtCqm/FuMz5OQbOiqmwwZE26Tu', 'yerico8@misena.edu.co', '3203020256', 'Carrera 8d #131-25 barrio montecarlo', 2, 2, 1, 0, '', 0),
-(1106632517, 'kevin', 'jaimes', '$2y$12$5rN8m2svxD9ueNZFOqFJkulXC24LC5Y7PDr4NAJfA0px86IaZv11O', 'kajaimes51@misena.edu.co', '3245245253', 'el salado', 1, 4, 1, 0, '', 0),
-(1106632525, 'jhoen', 'ramos', '$2y$12$GprzLgvGSFU.O.rP4ra.v.9FalCCzrBrv.cKtza8jzYAHpde.nnoq', 'sahileth96@gmail.com', '3227825320', 'Manzana Q casa 5 barrio: bosque baja', 2, 1, 1, 2, '', 0);
+INSERT INTO `usuarios` (`documento`, `nombre`, `apellido`, `password`, `correo_electronico`, `celular`, `direccion`, `id_genero`, `id_rol`, `id_estado`, `foto`, `id_tipdocu`) VALUES
+(28544314, 'jeidy', 'joven', '$2y$12$aQ7vTJirCTJHQyN3wKz4uu3zJmNBrr.FKJX6PRj1CBgDs9607bhmm', 'Jeidy13@gmail.com', '3133130948', 'Manzana Q casa 5 barrio: bosque baja', 2, 3, 1, '', 0),
+(1106632118, 'yudy', 'rico', '$2y$12$f2gTqfFDE5duw6dtfAuLMeU/5ibEtCqm/FuMz5OQbOiqmwwZE26Tu', 'yerico8@misena.edu.co', '3203020256', 'Carrera 8d #131-25 barrio montecarlo', 2, 2, 1, '', 0),
+(1106632517, 'kevin', 'jaimes', '$2y$12$5rN8m2svxD9ueNZFOqFJkulXC24LC5Y7PDr4NAJfA0px86IaZv11O', 'kajaimes51@misena.edu.co', '3245245253', 'el salado', 1, 4, 1, '', 0),
+(1106632525, 'jhoen', 'ramos', '$2y$12$GprzLgvGSFU.O.rP4ra.v.9FalCCzrBrv.cKtza8jzYAHpde.nnoq', 'sahileth96@gmail.com', '3227825320', 'Manzana Q casa 5 barrio: bosque baja', 2, 1, 1, '', 0);
 
 -- --------------------------------------------------------
 
@@ -441,7 +451,7 @@ ALTER TABLE `det_venta`
 -- AUTO_INCREMENT de la tabla `embalaje`
 --
 ALTER TABLE `embalaje`
-  MODIFY `id_embala` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_embala` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `entrada`
@@ -465,13 +475,13 @@ ALTER TABLE `genero`
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `id_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
