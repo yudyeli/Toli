@@ -2,6 +2,8 @@
 session_start(); // Iniciar la sesión
 
 require_once("../../../db/conexion.php");
+require_once("./menu.php");
+
 $db = new database();
 $conexion = $db->conectar();
 
@@ -28,8 +30,8 @@ if (isset($_SESSION['document'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Título</title> <!-- Cambia el título a algo descriptivo -->
-    <style>
+    <!-- <title>Tu Título</title> Cambia el título a algo descriptivo -->
+    <!-- <style>
         /* Agrega estilos para el menú de navegación */
         body {
             font-family: Arial, sans-serif;
@@ -53,27 +55,30 @@ if (isset($_SESSION['document'])) {
             background-color: #ddd;
             color: black;
         }
-    </style>
+    </style> -->
 </head>
 <body>
-    <nav>
+    <!-- <nav>
         <a href="../admin/index.php">Inicio</a>
         <a href="../admin/categoria/index.php">Categoria</a>
         <a href="../admin/embalaje/index.php">Embalaje</a>
         <a href="../admin/genero/index.php">Genero</a>
         <a href="../admin/producto/producto.php">Producto</a>
         <a href="../admin/roles/index.php">Roles</a>
-    </nav>
+        <a href="../admin/documentos/index.php">tip documento</a>
+        <a href="../admin/usuarios/index.php">Usuarios</a>
+        <a href="../admin/menu.php">menu</a>
+    </nav> -->
 
-    <h1>Bienvenido</h1>
+    <!-- <h1>Bienvenido</h1> -->
     <?php
-    if (isset($usua)) {
-        // Mostrar los datos del usuario
-        echo "Administrador " . $usua['nombre'];
-        // Agrega más campos de usuario si es necesario
-    } else {
-        echo "No se pudo encontrar al usuario";
-    }
+    // if (isset($usua)) {
+    //     // Mostrar los datos del usuario
+    //     echo "Administrador " . $usua['nombre'];
+    //     // Agrega más campos de usuario si es necesario
+    // } else {
+    //     echo "No se pudo encontrar al usuario";
+    // }
     ?>
 </body>
 </html>

@@ -75,8 +75,7 @@ if (isset($_GET['id_categoria'])) {
         
     </table>
     <a href="crear.php" class="btn btn-success btn-margin">Crear una categoria</a>
-    <a href="../../../../views/models/admin/index.php" class="btn btn-primary btn-margin">Volver</a>
-</div>
+    <a href="../../../../views/models/admin/index-admin.php" class="btn btn-primary btn-margin">Volver</a></div>
 
 </body>
 </html>

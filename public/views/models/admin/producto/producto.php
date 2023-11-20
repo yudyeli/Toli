@@ -107,7 +107,7 @@ foreach ($embalajes as $embalaje) {
         
     </table>
     <a href="crear.php" class="btn btn-success btn-margin">Crear un Producto</a>
-    <a href="../../../../views/models/admin/index.php" class="btn btn-primary btn-margin">Volver</a>
+    <a href="../../../../views/models/admin/index-admin.php" class="btn btn-primary btn-margin">Volver</a>
 </div>
 
 </body>

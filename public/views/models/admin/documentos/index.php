@@ -6,16 +6,16 @@ session_start();
 ?>
 
 <?php
-$stm = $conexion->prepare("SELECT * FROM embalaje");
+$stm = $conexion->prepare("SELECT * FROM tipdocu");
 $stm->execute();
-$embala = $stm->fetchAll(PDO::FETCH_ASSOC);
+$documento = $stm->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php
-if (isset($_GET['id_embala'])) {
-    $txtid = $_GET['id_embala'];
+if (isset($_GET['id_tipdocu'])) {
+    $txtid = $_GET['id_tipdocu'];
 
-    $stm = $conexion->prepare("DELETE FROM embajale WHERE id_embala = :id_embala");
-    $stm->bindParam(":id_embala", $txtid, PDO::PARAM_INT);
+    $stm = $conexion->prepare("DELETE FROM tipdocu WHERE id_tipdocu = :id_tipdocu");
+    $stm->bindParam(":id_tipdocu", $txtid, PDO::PARAM_INT);
     $stm->execute();
 
     header("location: index.php");
@@ -29,7 +29,7 @@ if (isset($_GET['id_embala'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabla de embalajes</title>
+    <title>Tabla de documentos</title>
     <!-- Agrega los estilos de Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="../../../controller/img/icono.png" type="image/x-icon">
@@ -54,29 +54,27 @@ if (isset($_GET['id_embala'])) {
     <table class="table table-bordered">
         <thead class="table-dark">
             <tr>
-                <th scope="col">ID embalaje</th>
-                <th scope="col">Embalaje</th>
+                <th scope="col">ID documento</th>
+                <th scope="col">Tipo de documentos</th>
                 <th colspan="2">Acciones</th>
                 
         </thead>
         <tbody>
-            <?php foreach ($embala as $embalas) { ?>
+            <?php foreach ($documento as $docume) { ?>
                 <tr>
-                    <td scope="row"><?php echo $embalas['id_embala']; ?></td>
-                    <td><?php echo $embalas['embalaje']; ?></td>
+                    <td scope="row"><?php echo $docume['id_tipdocu']; ?></td>
+                    <td><?php echo $docume['tipoocu']; ?></td>
                     <td>
-                        <a href="editar.php?id_embala=<?php echo $embalas['id_embala']; ?>" class="btn btn-success btn-margin">Editar</a>
-                    </td>
-                    <td>
-                        <a href="eliminar.php?id_embala=<?php echo $embalas['id_embala']; ?>" class="btn btn-danger btn-margin">Eliminar</a>
+                        <a href="eliminar.php?id_tipdocu=<?php echo $docume['id_tipdocu']; ?>" class="btn btn-danger btn-margin">Eliminar</a>
                     </td>
                 </tr>
             <?php } ?>
         </tbody>
         
     </table>
-    <a href="crear.php" class="btn btn-success btn-margin">Crear un embalaje</a>
-    <a href="../../../../views/models/admin/index-admin.php" class="btn btn-primary btn-margin">Volver</a></div>
+    <a href="crear.php" class="btn btn-success btn-margin">Crear un tipo de documento</a>
+    <a href="../../../../views/models/admin/index-admin.php" class="btn btn-primary btn-margin">Volver</a>
+</div>
 
 </body>
 </html>

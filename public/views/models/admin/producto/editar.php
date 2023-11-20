@@ -36,14 +36,18 @@ if ((isset($_POST["registro"])) && ($_POST["registro"] == "formu")) {
     $precio_ven = $_POST['precio_ven'];
     $documento = $_POST['documento'];
 
-    if (!empty($_FILES['foto']['name'])) {
+     if (!empty($_FILES['foto']['name'])) {
         $extension = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
         $nombre = "producto_" . time();
         $foto_nombre = $nombre . "." . $extension;
-        move_uploaded_file($_FILES['foto']['tmp_name'], "../../../../controller/img/productos/$foto_nombre");
+        $ruta_destino = "../../../../assets/img/img_produc/$foto_nombre";
+
+        // Mueve el archivo a la ruta de destino
+        move_uploaded_file($_FILES['foto']['tmp_name'], $ruta_destino);
     } else {
-        // Si no se elige una nueva foto, mantener la existente
-        $foto_nombre = $producto['foto'];
+        // Si no se envió un archivo, muestra un mensaje de error y redirige
+        echo '<script>alert("No se ha seleccionado una imagen"); window.location="producto.php"</script>';
+        exit(); // Detiene la ejecución del script
     }
 
     $updatesql = $conectar->prepare("UPDATE productos SET nom_produc = :nom_produc, descrip = :descrip, precio_compra = :precio_compra, disponibles = :disponibles, id_categoria = :id_categoria, cantidad = :cantidad, id_embala = :id_embala, foto = :foto, precio_ven = :precio_ven, documento = :documento WHERE id_producto = :id_producto");

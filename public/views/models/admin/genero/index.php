@@ -63,7 +63,7 @@ $genero = $stm->fetchAll(PDO::FETCH_ASSOC);
         
     </table>
     <a href="crear.php" class="btn btn-success btn-margin">Crear un genero</a>
-    <a href="../../../../views/models/admin/index.php" class="btn btn-primary btn-margin">Volver</a>
+    <a href="../../../../views/models/admin/index-admin.php" class="btn btn-primary btn-margin">Volver</a>
 </div>
 
 </body>
