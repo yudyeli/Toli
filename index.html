@@ -54,9 +54,9 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
                     <a href="./index.html" class="nav-item nav-link active">Inicio</a>
-                    <a href="#nosotros" class="nav-item nav-link">Nosotros</a>
-                    <a href="#buzon" class="nav-item nav-link">Sugerencias</a>
-                    <a href="#Contactanos" class="nav-item nav-link">Contactanos</a>
+                    <a href="#nosotros" class="nav-item nav-link nav-scroll">Nosotros</a>
+                    <a href="#buzon" class="nav-item nav-link nav-scroll">Sugerencias</a>
+                    <a href="#Contactanos" class="nav-item nav-link nav-scroll">Contactanos</a>
                     <a href="./public/views/auth/login.php" class="nav-item nav-link">Iniciar sesion</a>
                     <a href="./public/views/auth/registro.php" class="nav-item nav-link">Registrarse</a>
                 </div>
@@ -103,7 +103,7 @@
             <div class="section-title">
                 <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">"Donde los productos del suelo
                 </h4>
-                <h1 class="display-4">se abrazan con el bullicio de la vida."</h1>
+                <h1 class="display-4">Se abrazan con el bullicio de la vida."</h1>
             </div>
             <div class="row">
                 <div class="col-lg-4 py-0 py-lg-5">
@@ -213,26 +213,7 @@
     </div>
     <!-- Service End -->
 
-    <!-- Menu Start -->
-    <div class="container-fluid pt-5">
-        <div class="container">
-            <div class="section-title">
-                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Sobre</h4>
-                <h1 class="display-4">Nosotros</h1>
-            </div>
-            <div class="row align-items-center justify-content-center mb-5 mx-auto">
-                <h1 class="mb-5">¿Quiénes somos?</h1>
-                <div class="col-8 col-sm-9 text-center">
-                    <div class="col-4 col-sm-3 d-flex align-items-center justify-content-center" style="height: 200px;">
-                        <img class="w-100 mb-2 mb-sm-0 mx-auto" src="./images/nosotros_img.jpg" alt="">
-                    </div>
-                    
-                    <p class="m-0">La carne de res es una proteína animal ampliamente consumida, obtenida del ganado bovino. Es conocida por su sabor robusto y textura variada, que incluye cortes tiernos como el filete y cortes más magros como el solomillo. Rica en proteínas, hierro y zinc.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Menu End -->
+
 
 
     <!-- Reservation Start -->
@@ -241,25 +222,20 @@
             <div class="container">
                 <div class="reservation position-relative overlay-top overlay-bottom">
                     <div class="row align-items-center">
-                        <!-- <div class="col-lg-6 my-5 my-lg-0">
+                        <div class="col-lg-6 my-5 my-lg-0">
                             <div class="p-5">
                                 <div class="mb-4">
-                                    <h1 class="display-3 text-primary">Buzon de sugerencias</h1>
-                                    <h1 class="text-white">Se realiza con base de datos y una interfaz que tenga un
-                                        filtro por fechas</h1>
+                                    <h1 class="display-3 text-primary">Ayudanos</h1>
+                                    <p class="text-white">Estamos abiertos a recibir comentarios y sugerencias para
+                                        optimizar y perfeccionar la calidad de nuestros servicios. Tus aportes son
+                                        valiosos y contribuyen directamente a la mejora continua de la plataforma.
+                                        ¡Apreciamos tu participación!</p>
                                 </div>
-                                <ul class="list-inline text-white m-0">
-                                    <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Envio Gratis Por
-                                        Registro De Primera Vez</li>
-                                    <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Productos de muy buena
-                                        calidad </li>
-                                    <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>100% seguro todo</li>
-                                </ul>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="col-lg-6">
                             <div class="text-center p-5" style="background: rgba(51, 33, 29, .8);">
-                                <h1 class="text-white mb-4 mt-5">Sugerecias</h1>
+                                <h1 class="text-white mb-4 mt-5">Buzon de Sugerecias</h1>
                                 <form class="mb-5">
                                     <div class="form-group">
                                         <input type="email" class="form-control bg-transparent border-primary p-4"
@@ -269,27 +245,10 @@
                                         <div class="date" id="date" data-target-input="nearest">
                                             <input type="text"
                                                 class="form-control bg-transparent border-primary p-4 datetimepicker-input"
-                                                placeholder="Escribe tus sugerencias..." data-target="#date" data-toggle="datetimepicker" />
+                                                placeholder="Escribe tus sugerencias..." data-target="#date"
+                                                data-toggle="datetimepicker" />
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <div class="time" id="time" data-target-input="nearest">
-                                            <input type="text"
-                                                class="form-control bg-transparent border-primary p-4 datetimepicker-input"
-                                                placeholder="Time" data-target="#time" data-toggle="datetimepicker" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <select class="custom-select bg-transparent border-primary px-4"
-                                            style="height: 49px;">
-                                            <option selected>Person</option>
-                                            <option value="1">Person 1</option>
-                                            <option value="2">Person 2</option>
-                                            <option value="3">Person 3</option>
-                                            <option value="3">Person 4</option>
-                                        </select>
-                                    </div> -->
-
                                     <div>
                                         <button class="btn btn-primary btn-block font-weight-bold py-3"
                                             type="submit">Enviar</button>
@@ -304,64 +263,29 @@
     </div>
     <!-- Reservation End -->
 
-
-    <!-- Testimonial Start -->
-    <!-- </script>
-    <div class="container-fluid py-5">
+    <!-- Menu Start -->
+    <div class="container-fluid pt-5" id="nosotros">
         <div class="container">
             <div class="section-title">
-                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Vendedores Top</h4>
-                <h1 class="display-4">Vendedores Del Mes</h1>
+                <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Sobre</h4>
+                <h1 class="display-4">Nosotros</h1>
             </div>
-            <div class="owl-carousel testimonial-carousel">
-                <div class="testimonial-item">
-                    <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid" src="./public/assets/img/testimonial-1.jpg" alt="">
-                        <div class="ml-3">
-                            <h4>#Nombre#</h4>
-                            <i>#productos que vende#</i>
-                        </div>
-                    </div>
-                    <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem.
-                        Dolor tempor ipsum sanct clita</p>
-                </div>
-                <div class="testimonial-item">
-                    <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid" src="./public/assets/img/testimonial-1.jpg" alt="">
-                        <div class="ml-3">
-                            <h4>#Nombre#</h4>
-                            <i>#productos que vende#</i>
-                        </div>
-                    </div>
-                    <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem.
-                        Dolor tempor ipsum sanct clita</p>
-                </div>
-                <div class="testimonial-item">
-                    <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid" src="./public/assets/img/testimonial-1.jpg" alt="">
-                        <div class="ml-3">
-                            <h4>#Nombre#</h4>
-                            <i>#productos que vende#</i>
-                        </div>
-                    </div>
-                    <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem.
-                        Dolor tempor ipsum sanct clita</p>
-                </div>
-                <div class="testimonial-item">
-                    <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid" src="./public/assets/img/testimonial-1.jpg" alt="">
-                        <div class="ml-3">
-                            <h4>#Nombre#</h4>
-                            <i>#productos que vende#</i>
-                        </div>
-                    </div>
-                    <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem.
-                        Dolor tempor ipsum sanct clita</p>
-                </div>
+            <div class="row align-items-center justify-content-center mb-5 mx-auto">
+                <h1 class="mb-5">¿Quiénes somos?</h1>
+                <div class="col-8 col-sm-9 text-center">
+                    <img class="w-50 mb-2 mb-sm-0 mx-auto d-block" src="./public/assets/img/aprendices.jpg" alt=""> <br>
+                </div> <br>
+
+                <p class="m-0">Somos aprendices del SENA con la intención de desarrollar un software que facilite el
+                    acceso a productos del campo, contribuyendo así a fortalecer la economía de los productores. Nuestra
+                    meta es crear una plataforma que simplifique la interacción entre productores y usuarios,
+                    promoviendo la comercialización directa de productos frescos y apoyando el crecimiento sostenible de
+                    las comunidades rurales.</p>
             </div>
         </div>
-    </div> -->
-    <!-- Testimonial End -->
+    </div>
+    </div>
+    <!-- Menu End -->
 
     <!-- Footer Start -->
     <div id="Contactanos">
@@ -454,6 +378,25 @@
 
     <!-- Template Javascript -->
     <script src="./public/assets/js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".nav-scroll").on('click', function (event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+
+                    var hash = this.hash;
+
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function () {
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+    </script>
 
 </body>
 
