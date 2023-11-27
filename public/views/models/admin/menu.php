@@ -1,27 +1,28 @@
 <?php
-// session_start(); // Iniciar la sesión
-
+// Se importa el archivo de conexión a la base de datos
 require_once("../../../db/conexion.php");
+// Se instancia la clase Database para la conexión a la base de datos
 $db = new Database();
 $con = $db->conectar();
 
-// validamos la sesion del usuario
+// Validación de sesión (código comentado)
 // require_once "../../auth/validationSession.php";
 
-// cerrar sesion
+// Cierre de sesión al presionar 'btncerrar'
 if (isset($_POST['btncerrar'])) {
-
 	session_destroy();
 	header("Location:../../../../index.html");
 }
 
+// Obtiene el documento de la sesión del usuario
 $document = $_SESSION['document'];
 
-// mediante una consulta llamamos todas las entradas de los usuarios a la interfaz
-$userEntry = $con->prepare("SELECT * FROM ingreso INNER JOIN usuarios INNER JOIN roles ON ingreso.documento = usuarios.documento AND usuarios.id_rol = roles.id_rol WHERE roles.id_rol >= 2 ORDER BY ingreso.id_ingreso DESC LIMIT 6");
+// Consulta SQL para obtener las últimas 6 entradas de usuarios
+$userEntry = $con->prepare("SELECT * FROM ingreso INNER JOIN usuarios INNER JOIN roles ON ingreso.documento = usuarios.documento AND usuarios.id_rol = roles.id_rol WHERE roles.id_rol >= 1 ORDER BY ingreso.id_ingreso DESC LIMIT 6");
 $userEntry->execute();
 $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
 
+// Consulta SQL para obtener la información del usuario logueado
 $user = $con->prepare("SELECT * FROM usuarios WHERE documento = '$document'");
 $user->execute();
 $respuesta = $user->fetch(PDO::FETCH_ASSOC);
@@ -59,7 +60,7 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 
 </head>
 
-<body style="font-family: 'Times New Roman', Times, serif;">
+<body class="con" style="font-family: 'Times New Roman', Times, serif;">
 
 	<!--***** Main wrapper start ******-->
 	<div id="main-wrapper">
@@ -86,7 +87,10 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 				<nav class="navbar navbar-expand">
 					<div class="collapse navbar-collapse justify-content-between">
 						<div class="header-left">
-							<div class="dashboard_bar">
+							<div class="dashboard_bar" style="color:#4E3F6B" >
+								<a aria-expanded="false">
+									<i class="fas fa-user-check"></i>
+								</a>
 								Administrador <?php echo $respuesta['nombre'] ?>
 							</div>
 						</div>
@@ -99,7 +103,7 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 									</svg>
 
 									<?php
-									$conteoEntrada = "SELECT COUNT(*) AS conteo FROM ingreso INNER JOIN usuarios ON ingreso.documento = usuarios.documento WHERE usuarios.id_rol >= 2";
+									$conteoEntrada = "SELECT COUNT(*) AS conteo FROM ingreso INNER JOIN usuarios ON ingreso.documento = usuarios.documento WHERE usuarios.id_rol >= 1";
 
 									try {
 										$conteos = $con->query($conteoEntrada);
@@ -169,7 +173,7 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 
 										</ul>
 									</div>
-									<a class="all-notification" href="./index.php">Ver todas<i class="ti-arrow-end"></i></a>
+									<a class="all-notification" href="./index-admin.php">Ver todas<i class="ti-arrow-end"></i></a>
 								</div>
 							</li>
 
@@ -232,7 +236,7 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 					<!-- MODULO DE CATEGORIAS -->
 					<li>
 						<a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-home"></i>
+							<i class="fas fa-folder"></i>
 							<span class="nav-text">CATEGORIAS</span>
 						</a>
 						<ul aria-expanded="false">
@@ -243,7 +247,7 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 
 					<!-- MODULO DE DOCUMENTOS -->
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-home"></i>
+							<i class="fas fa-file"></i>
 							<span class="nav-text">DOCUMENTOS</span>
 						</a>
 						<ul aria-expanded="false">
@@ -254,7 +258,7 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 
 					<!-- MODULO DE EMBALAJE -->
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-home"></i>
+							<i class="fas fa-box"></i>
 							<span class="nav-text">EMBALAJE</span>
 						</a>
 						<ul aria-expanded="false">
@@ -265,7 +269,7 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 
 					<!-- MODULO DE GENEROS -->
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-home"></i>
+							<i class="fas fa-venus-mars"></i>
 							<span class="nav-text">GENEROS</span>
 						</a>
 						<ul aria-expanded="false">
@@ -276,7 +280,7 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 
 					<!-- MODULO DE PRODUCTOS -->
 					<li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-home"></i>
+							<i class="fas fa-shopping-bag"></i>
 							<span class="nav-text">PRODUCTOS</span>
 						</a>
 						<ul aria-expanded="false">
@@ -288,7 +292,7 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 					<!-- MODULO DE ROLES -->
 					<li>
 						<a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-home"></i>
+							<i class="fas fa-users-cog"></i>
 							<span class="nav-text">ROLES</span>
 						</a>
 						<ul aria-expanded="false">
@@ -356,9 +360,6 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 		function cardsCenter() {
 
 			/*  testimonial one function by = owl.carousel.js */
-
-
-
 			jQuery('.card-slider').owlCarousel({
 				loop: true,
 				margin: 0,
