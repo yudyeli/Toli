@@ -256,10 +256,6 @@ textarea {
     line-height: inherit
 }
 
-button,
-input {
-    overflow: visible
-}
 
 button,
 select {
@@ -2716,18 +2712,18 @@ fieldset:disabled a.btn {
 
 .btn-primary:hover {
     color: #212529;
-    background-color: #d38d3c;
-    border-color: #d18731
+    background-color: #3eff7e;
+    border-color: #3eff7e
 }
 
-.btn-primary:focus,
+/* .btn-primary:focus,
 .btn-primary.focus {
     color: #212529;
-    background-color: #d38d3c;
-    border-color: #d18731;
+    background-color: #2daf6e;
+    border-color: #2daf6e;
     box-shadow: 0 0 0 .2rem rgba(190, 141, 84, 0.5)
-}
-
+} */
+/* 
 .btn-primary.disabled,
 .btn-primary:disabled {
     color: #212529;
@@ -2747,20 +2743,20 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show>.btn-primary.dropdown-toggle:focus {
     box-shadow: 0 0 0 .2rem rgba(190, 141, 84, 0.5)
-}
+} */
 
 .btn-secondary {
-    color: #fff;
-    background-color: #33211D;
-    border-color: #33211D
+    color: #212529;
+    background-color: #62DC9F;
+    border-color: #62DC9F
 }
 
 .btn-secondary:hover {
-    color: #fff;
-    background-color: #1b110f;
-    border-color: #120c0b
+    color: #212529;
+    background-color: #3eff7e;
+    border-color: #3eff7e
 }
-
+/* 
 .btn-secondary:focus,
 .btn-secondary.focus {
     color: #fff;
@@ -2788,7 +2784,7 @@ fieldset:disabled a.btn {
 .btn-secondary:not(:disabled):not(.disabled).active:focus,
 .show>.btn-secondary.dropdown-toggle:focus {
     box-shadow: 0 0 0 .2rem rgba(82, 66, 63, 0.5)
-}
+} */
 
 .btn-success {
     color: #fff;

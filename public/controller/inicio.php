@@ -21,16 +21,20 @@ if (isset($_POST["btn-ingresar"])) {
     $consul = $consulta->fetch();
 
     // SE SACA LA VARIANLE SESSION DOCUMENTO DEL USUARIO
-    $_SESSION['document'] = $consul['documento'];
-    $documento = $_SESSION['document'];
+    $documento = null; // Inicializar la variable
+    if ($consul) {
+        $_SESSION['document'] = $consul['documento'];
+        $documento = $_SESSION['document'];
+    }
 
     // SE INSERTAN DATOS A LA TABLA DE INGRESO
-    $consulta2 = $con->prepare("SELECT * FROM ingreso INNER JOIN usuarios ON ingreso.documento=usuarios.documento WHERE ingreso.documento= :documento");
-    $consulta2->execute([':documento' => $documento]);
+    if ($documento) { // Asegúrate de que $documento esté definido
+        $consulta2 = $con->prepare("SELECT * FROM ingreso INNER JOIN usuarios ON ingreso.documento=usuarios.documento WHERE ingreso.documento= :documento");
+        $consulta2->execute([':documento' => $documento]);
 
-    $consulta3 = $con -> prepare ("INSERT INTO ingreso (documento, fecha_ingre, hora_ingre) VALUES ('$documento','$fecha_actual', '$hora_actual')");
-    $consulta3->execute();
-
+        $consulta3 = $con->prepare("INSERT INTO ingreso (documento, fecha_ingre, hora_ingre) VALUES (:documento, :fecha_actual, :hora_actual)");
+        $consulta3->execute([':documento' => $documento, ':fecha_actual' => $fecha_actual, ':hora_actual' => $hora_actual]);
+    }
     /* Set the "cost" parameter to 12. */
     $options = ['cost' => 12];
 
@@ -80,42 +84,21 @@ if (isset($_POST["btn-ingresar"])) {
                     $redirectLocation = "../views/models/distri_mayo/index-distriMayo.php";
                     break;
                 default:
-                    header("Location:../views/auth/error_log.php");
+                    header("Location:../views/auth/error_lo.php");
                     exit();
             }
 
             header("Location: $redirectLocation");
             exit();
 
-        } else {
-            // Si el usuario y la clave son incorrectos, actualizamos el contador de intentos fallidos
-            $fallos = $consul['fallos'] + 1;
-
-            if ($fallos >= 3) {
-                // Si ha superado los 3 intentos fallidos, el estado pasara a inactivo
-                $stmt_update_estado = $con->prepare("UPDATE usuarios SET id_estado = 2, fallos = :fallos WHERE documento = :documento");
-                $stmt_update_estado->bindParam(":fallos", $fallos, PDO::PARAM_INT);
-                $stmt_update_estado->bindParam(":documento", $consul['documento']);
-                $stmt_update_estado->execute();
-
-                echo '<script>alert("Realizaste tres intentos fallidos, tu cuenta a pasado a estado inactivo")</script>';
-                echo '<script>window.location="../views/auth/error_log.php"</script>';
-                echo '<script>alert("Realizaste tres intentos fallidos, tu cuenta a pasado a estado inactivo")</script>';
-            } else {
-                // Si no ha superado los 3 intentos, actualizamos solo el contador de intentos fallidos
-                $stmt_update_intentos = $con->prepare("UPDATE usuarios SET fallos = :fallos WHERE documento = :documento");
-                $stmt_update_intentos->bindParam(":fallos", $fallos, PDO::PARAM_INT);
-                $stmt_update_intentos->bindParam(":documento", $consul['documento']);
-                $stmt_update_intentos->execute();
-
-                // Redireccionamos a la página de inicio con un mensaje de error
-                header("Location:../views/auth/error_log.php");
-                exit();
-            }
+        }else {
+            echo '<script>alert("Ingresaste datos erroneos");</script>';
+            echo '<script>window.location="../views/auth/error_lo.php";</script>';
         }
+        
     } else {
-        header("Location:../views/auth/error_log.php");
-        exit();
+        echo '<script>alert("Ingresaste datos erroneos");</script>';
+        echo '<script>window.location="../views/auth/error_lo.php";</script>';
     }
 }
 ?>
