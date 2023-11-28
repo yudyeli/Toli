@@ -138,7 +138,7 @@ if (isset($_SESSION['document'])) {
                             <div class="card-body p-4">
                                 <div class="media">
                                     <span class="me-3">
-                                        <img src="../../../assets/images/armas-removebg-preview.png" class="la la-users sd-shape"></img>
+                                        <img src="../../../assets/img/img_produc/Productos-agricolas.png" class="la la-users sd-shape"></img>
 
                                     </span>
                                     <div class="media-body text-white text-end">
