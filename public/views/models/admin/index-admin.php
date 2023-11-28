@@ -47,7 +47,7 @@ if (isset($_SESSION['document'])) {
         <div class="container-fluid container-center-center">
             <!-- contenido pagina principal del administrador -->
             <div class="row"> <!-- CONTENIDO PARA USUARIOS -->
-                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                <div class="col-xxl-6 col-lg-6 col-sm-6">
                     <a href="#">
                         <div class="widget-stat card bg-danger">
                             <div class="card-body p-4">
@@ -89,7 +89,7 @@ if (isset($_SESSION['document'])) {
                     </a>
                 </div>
                 <!-- CONTENIDO PARA VENTAS -->
-                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                <div class="col-xxl-6 col-lg-6 col-sm-6">
                     <a href="#">
                         <div class="widget-stat card bg-danger">
                             <div class="card-body p-4">
@@ -132,7 +132,7 @@ if (isset($_SESSION['document'])) {
                     </a>
                 </div>
                 <!-- CONTENIDO PARA PRODUCTOS -->
-                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                <div class="col-xxl-6 col-lg-6 col-sm-6">
                     <a href="./listaWeapons.php">
                         <div class="widget-stat card bg-danger">
                             <div class="card-body p-4">
@@ -175,7 +175,7 @@ if (isset($_SESSION['document'])) {
                     </a>
                 </div>
                 <!-- CONTENIDO PARA EMBALAJE -->
-                <div class="col-xl-3 col-xxl-6 col-lg-6 col-sm-6">
+                <div class="col-xxl-6 col-lg-6 col-sm-6">
                     <a href="./listaWorlds.php">
                         <div class="widget-stat card bg-danger">
                             <div class="card-body p-4">
@@ -229,14 +229,14 @@ if (isset($_SESSION['document'])) {
 
             <div class="row page-titles">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Estadisticas</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Actividad Jugadores</a></li>
+                    <!-- <li class="breadcrumb-item active"><a href="javascript:void(0)">Estadisticas</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Actividad Jugadores</a></li> -->
                 </ol>
             </div>
             <!-- row -->
 
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
@@ -256,10 +256,10 @@ if (isset($_SESSION['document'])) {
 
 
                                         </tr>
-                                    </thead>
+                                    </thead> -->
                                     <tbody>
                                         <?php foreach ($entry as $entrada) { ?>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td><?= $entrada["tipoDocumento"] ?></td>
                                                 <td><?= $entrada["documento"] ?></td>
                                                 <td><?= $entrada["nombreCompleto"] ?></td>
@@ -267,7 +267,7 @@ if (isset($_SESSION['document'])) {
                                                 <td><?= $entrada["correoElectronico"] ?></td>
                                                 <td><?= $entrada["horario_entrada"] ?></td>
 
-                                            </tr>
+                                            </tr> -->
 
                                         <?php
                                         }
@@ -295,9 +295,6 @@ if (isset($_SESSION['document'])) {
 </body>
 
 </html>
-
-
-
 
 
 <?php
