@@ -48,195 +48,183 @@ if (isset($_SESSION['document'])) {
             <!-- contenido pagina principal del administrador -->
             <div class="row"> <!-- CONTENIDO PARA USUARIOS -->
                 <div class="col-xxl-6 col-lg-6 col-sm-6">
-                    <a href="#">
-                        <div class="widget-stat card bg-danger">
-                            <div class="card-body p-4">
-                                <div class="media">
-                                    <span class="me-3">
-                                        <img src="../../../assets/img/usuarios.jpg" class="la la-users sd-shape"></img>
-                                    </span>
-                                    <div class="media-body text-white text-end">
-                                        <p class="mb-1">Usuarios Registrados</p>
+                    <div class="widget-stat card bg-danger" style="background-color:#0097B2 !important;">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <img src="../../../assets/img/usuarios.jpg" class="la la-users sd-shape"></img>
+                                </span>
+                                <div class="media-body text-white text-end">
+                                    <p class="mb-1">Usuarios Registrados</p>
+                                    <?php
+                                    $conteoUser = "SELECT COUNT(*) AS contadorUser FROM usuarios";
+                                    try {
+                                        $conteosUser = $conexion->query($conteoUser);
+                                        $contadorUser = $conteosUser->fetch(PDO::FETCH_ASSOC)['contadorUser'];
+
+                                        if ($contadorUser) {
+
+                                    ?>
+                                            <h3 class="text-white"><?php echo $contadorUser ?></h3>
+
                                         <?php
-                                        $conteoUser = "SELECT COUNT(*) AS contadorUser FROM usuarios";
-                                        try {
-                                            $conteosUser = $conexion->query($conteoUser);
-                                            $contadorUser = $conteosUser->fetch(PDO::FETCH_ASSOC)['contadorUser'];
-
-                                            if ($contadorUser) {
-
+                                        } else {
                                         ?>
-                                                <h3 class="text-white"><?php echo $contadorUser ?></h3>
-
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <h3 class="text-white">0</h3>
-                                            <?php
-                                            }
-                                        } catch (PDOException $e) {
-
-                                            ?>
-                                            <h3 class="text-white"><?php $e->getMessage() ?></h3>
+                                            <h3 class="text-white">0</h3>
                                         <?php
                                         }
+                                    } catch (PDOException $e) {
 
                                         ?>
-                                    </div>
+                                        <h3 class="text-white"><?php $e->getMessage() ?></h3>
+                                    <?php
+                                    }
+
+                                    ?>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
+
                 </div>
                 <!-- CONTENIDO PARA VENTAS -->
                 <div class="col-xxl-6 col-lg-6 col-sm-6">
-                    <a href="#">
-                        <div class="widget-stat card bg-danger">
-                            <div class="card-body p-4">
-                                <div class="media">
-                                    <span class="me-3">
-                                        <img src="../../../assets/images/anime.png" class="la la-users sd-shape"></img>
-                                    </span>
-                                    <div class="media-body text-white text-end">
-                                        <p class="mb-1">Ventas Realizadas</p>
+                    <div class="widget-stat card bg-danger" style="background-color:#0097B2 !important;">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <img src="../../../assets/images/anime.png" class="la la-users sd-shape"></img>
+                                </span>
+                                <div class="media-body text-white text-end">
+                                    <p class="mb-1">Ventas Realizadas</p>
+                                    <?php
+                                    $conteoUser = "SELECT COUNT(*) AS contadorUser FROM usuarios";
+                                    try {
+                                        $conteosUser = $conexion->query($conteoUser);
+                                        $contadorUser = $conteosUser->fetch(PDO::FETCH_ASSOC)['contadorUser'];
+
+                                        if ($contadorUser) {
+
+                                    ?>
+                                            <h3 class="text-white"><?php echo $contadorUser ?></h3>
+
                                         <?php
-                                        $conteoUser = "SELECT COUNT(*) AS contadorUser FROM usuarios";
-                                        try {
-                                            $conteosUser = $conexion->query($conteoUser);
-                                            $contadorUser = $conteosUser->fetch(PDO::FETCH_ASSOC)['contadorUser'];
-
-                                            if ($contadorUser) {
-
+                                        } else {
                                         ?>
-                                                <h3 class="text-white"><?php echo $contadorUser ?></h3>
-
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <h3 class="text-white">0</h3>
-                                            <?php
-                                            }
-                                        } catch (PDOException $e) {
-
-                                            ?>
-                                            <h3 class="text-white"><?php $e->getMessage() ?></h3>
+                                            <h3 class="text-white">0</h3>
                                         <?php
                                         }
+                                    } catch (PDOException $e) {
 
                                         ?>
-                                    </div>
+                                        <h3 class="text-white"><?php $e->getMessage() ?></h3>
+                                    <?php
+                                    }
+
+                                    ?>
                                 </div>
                             </div>
                         </div>
-
-                    </a>
+                    </div>
                 </div>
                 <!-- CONTENIDO PARA PRODUCTOS -->
                 <div class="col-xxl-6 col-lg-6 col-sm-6">
-                    <a href="./listaWeapons.php">
-                        <div class="widget-stat card bg-danger">
-                            <div class="card-body p-4">
-                                <div class="media">
-                                    <span class="me-3">
-                                        <img src="../../../assets/img/img_produc/Productos-agricolas.png" class="la la-users sd-shape"></img>
+                    <div class="widget-stat card bg-danger" style="background-color:#0097B2 !important;">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <img src="../../../assets/img/img_produc/Productos-agricolas.png" class="la la-users sd-shape"></img>
 
-                                    </span>
-                                    <div class="media-body text-white text-end">
-                                        <p class="mb-1">Cantidad de productos</p>
+                                </span>
+                                <div class="media-body text-white text-end">
+                                    <p class="mb-1">Cantidad de productos</p>
+                                    <?php
+                                    $conteoproductos = "SELECT COUNT(*) AS contadorproductos FROM productos";
+                                    try {
+                                        $conteoproductos = $conexion->query($conteoproductos);
+                                        $contadorproductos = $conteoproductos->fetch(PDO::FETCH_ASSOC)['contadorproductos'];
+
+                                        if ($contadorproductos) {
+
+                                    ?>
+                                            <h3 class="text-white"><?php echo $contadorproductos ?></h3>
+
                                         <?php
-                                        $conteoproductos = "SELECT COUNT(*) AS contadorproductos FROM productos";
-                                        try {
-                                            $conteoproductos = $conexion->query($conteoproductos);
-                                            $contadorproductos = $conteoproductos->fetch(PDO::FETCH_ASSOC)['contadorproductos'];
-
-                                            if ($contadorproductos) {
-
+                                        } else {
                                         ?>
-                                                <h3 class="text-white"><?php echo $contadorproductos ?></h3>
-
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <h3 class="text-white">0</h3>
-                                            <?php
-                                            }
-                                        } catch (PDOException $e) {
-
-                                            ?>
-                                            <h3 class="text-white"><?php $e->getMessage() ?></h3>
+                                            <h3 class="text-white">0</h3>
                                         <?php
                                         }
+                                    } catch (PDOException $e) {
 
                                         ?>
-                                    </div>
+                                        <h3 class="text-white"><?php $e->getMessage() ?></h3>
+                                    <?php
+                                    }
+
+                                    ?>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
                 <!-- CONTENIDO PARA EMBALAJE -->
                 <div class="col-xxl-6 col-lg-6 col-sm-6">
-                    <a href="./listaWorlds.php">
-                        <div class="widget-stat card bg-danger">
-                            <div class="card-body p-4">
-                                <div class="media">
-                                    <span class="me-3">
-                                        <img src="../../../assets/images/hero-banner.png" class="la la-users sd-shape"></img>
+                    <div class="widget-stat card bg-danger" style="background-color:#0097B2 !important;">
+                        <div class="card-body p-4">
+                            <div class="media">
+                                <span class="me-3">
+                                    <img src="../../../assets/images/hero-banner.png" class="la la-users sd-shape"></img>
 
-                                    </span>
-                                    <div class="media-body text-white text-end">
-                                        <p class="mb-1">Embalajes Registrados</p>
+                                </span>
+                                <div class="media-body text-white text-end">
+                                    <p class="mb-1">Embalajes Registrados</p>
+                                    <?php
+                                    $conteoEmbala = "SELECT COUNT(*) AS contadorEmbala FROM embalaje";
+                                    try {
+                                        $conteoEmbala = $conexion->query($conteoEmbala);
+                                        $contadorEmbala = $conteoEmbala->fetch(PDO::FETCH_ASSOC)['contadorEmbala'];
+
+                                        if ($contadorEmbala) {
+
+                                    ?>
+                                            <h3 class="text-white"><?php echo $contadorEmbala ?></h3>
+
                                         <?php
-                                        $conteoEmbala = "SELECT COUNT(*) AS contadorEmbala FROM embalaje";
-                                        try {
-                                            $conteoEmbala = $conexion->query($conteoEmbala);
-                                            $contadorEmbala = $conteoEmbala->fetch(PDO::FETCH_ASSOC)['contadorEmbala'];
-
-                                            if ($contadorEmbala) {
-
+                                        } else {
                                         ?>
-                                                <h3 class="text-white"><?php echo $contadorEmbala ?></h3>
-
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <h3 class="text-white">0</h3>
-                                            <?php
-                                            }
-                                        } catch (PDOException $e) {
-
-                                            ?>
-                                            <h3 class="text-white"><?php $e->getMessage() ?></h3>
+                                            <h3 class="text-white">0</h3>
                                         <?php
                                         }
+                                    } catch (PDOException $e) {
 
                                         ?>
-                                    </div>
+                                        <h3 class="text-white"><?php $e->getMessage() ?></h3>
+                                    <?php
+                                    }
+
+                                    ?>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
-    <!--**********************************
-            Content body start
-        ***********************************-->
+    <!--****** Content body start ***********-->
     <div class="content-body container-table">
         <div class="container-fluid">
 
             <div class="row page-titles">
                 <ol class="breadcrumb">
-                    <!-- <li class="breadcrumb-item active"><a href="javascript:void(0)">Estadisticas</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Actividad Jugadores</a></li> -->
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Estadisticas</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Actividad Jugadores</a></li>
                 </ol>
             </div>
-            <!-- row -->
 
 
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
@@ -256,10 +244,10 @@ if (isset($_SESSION['document'])) {
 
 
                                         </tr>
-                                    </thead> -->
+                                    </thead>
                                     <tbody>
                                         <?php foreach ($entry as $entrada) { ?>
-                                            <!-- <tr>
+                                            <tr>
                                                 <td><?= $entrada["tipoDocumento"] ?></td>
                                                 <td><?= $entrada["documento"] ?></td>
                                                 <td><?= $entrada["nombreCompleto"] ?></td>
@@ -267,7 +255,7 @@ if (isset($_SESSION['document'])) {
                                                 <td><?= $entrada["correoElectronico"] ?></td>
                                                 <td><?= $entrada["horario_entrada"] ?></td>
 
-                                            </tr> -->
+                                            </tr>
 
                                         <?php
                                         }

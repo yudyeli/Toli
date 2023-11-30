@@ -18,7 +18,7 @@ if (isset($_POST['btncerrar'])) {
 $document = $_SESSION['document'];
 
 // Consulta SQL para obtener las últimas 6 entradas de usuarios
-$userEntry = $con->prepare("SELECT * FROM ingreso INNER JOIN usuarios INNER JOIN roles ON ingreso.documento = usuarios.documento AND usuarios.id_rol = roles.id_rol WHERE roles.id_rol >= 1 ORDER BY ingreso.id_ingreso DESC LIMIT 6");
+$userEntry = $con->prepare("SELECT * FROM ingreso INNER JOIN usuarios INNER JOIN roles ON ingreso.documento = usuarios.documento AND usuarios.id_rol = roles.id_rol WHERE roles.id_rol >= 1 ORDER BY ingreso.id_ingreso DESC LIMIT 10");
 $userEntry->execute();
 $entry = $userEntry->fetchAll(PDO::FETCH_ASSOC);
 
@@ -87,7 +87,7 @@ $respuesta = $user->fetch(PDO::FETCH_ASSOC);
 				<nav class="navbar navbar-expand">
 					<div class="collapse navbar-collapse justify-content-between">
 						<div class="header-left">
-							<div class="dashboard_bar" style="color:#4E3F6B" >
+							<div class="dashboard_bar" style="color:#4E3F6B">
 								<a aria-expanded="false">
 									<i class="fas fa-user-check"></i>
 								</a>
